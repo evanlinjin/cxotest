@@ -86,7 +86,7 @@ func writeLoop(
 	c := n.Container()
 	pack, e := c.NewRoot(
 		pk, sk,
-		0, // skyobject.HashTableIndex,
+		skyobject.HashTableIndex,
 		c.CoreRegistry().Types(),
 	)
 	if e != nil {
