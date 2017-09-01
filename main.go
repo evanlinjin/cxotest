@@ -86,7 +86,7 @@ func writeLoop(
 	c := n.Container()
 	pack, e := c.NewRoot(
 		pk, sk,
-		skyobject.HashTableIndex|skyobject.EntireTree,
+		0, // skyobject.HashTableIndex,
 		c.CoreRegistry().Types(),
 	)
 	if e != nil {
@@ -148,6 +148,11 @@ func writeLoop(
 			if e := pack.Save(); e != nil {
 				panic(e)
 			}
+
+			fmt.Printf("[%d] INSPECT:\n %s", i, n.Container().Inspect(pack.Root()))
+
+			pack.Close()
+			fmt.Printf("[%d] Closed pack!\n", i)
 
 			i++
 		}
